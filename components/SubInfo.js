@@ -1,5 +1,5 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
+import { assets, SIZES } from '../constants'
 
 export const NFTTile = () => {
     return (
@@ -17,17 +17,25 @@ export const EthPrice = () => {
     )
 }
 
-export const ImageCmp = () => {
+export const ImageCmp = ({ imgUrl, index }) => {
     return (
-        <View>
-            <Text>ImageCmp</Text>
-        </View>
+        <Image
+            source={imgUrl}
+            resizeMode="contain"
+            style={{
+                width: 48,
+                height: 48,
+                marginLeft: index === 0 ? 0 : -SIZES.font
+            }}
+        />
     )
 }
 export const People = () => {
     return (
-        <View>
-            <Text>People</Text>
+        <View style={{ flexDirection: 'row' }}>
+            {[assets.person02, assets.person03, assets.person04].map((imgUrl, index) => (
+                <ImageCmp index={index} imgUrl={imgUrl} key={`People-${index}`} />
+            ))}
         </View>
     )
 }
@@ -42,8 +50,18 @@ export const EndDate = () => {
 
 export const SubInfo = () => {
     return (
-        <View>
-            <Text>SubInfo</Text>
-        </View>
+        <View
+
+            style={{
+                width: '100%',
+                paddingHorizontal: SIZES.font,
+                marginTop: -SIZES.extraLarge,
+                flexDirection: "row",
+                justifyContent: 'space-between'
+            }}
+        >
+            <People />
+            <EndDate />
+        </View >
     )
 }
