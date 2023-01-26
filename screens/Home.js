@@ -1,7 +1,45 @@
-import { Text } from "react-native"
+import { SafeAreaView, View } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import { } from "react-native-web";
+// import { useState } from "react"
+import { FocusedStatusBar, HomeHeader, NFTCard } from '../components/Index';
+import { COLORS, NFTData } from "../constants/index";
+
 const Home = () => {
     return (
-        <Text>HomeComponentContext</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+            <FocusedStatusBar background={COLORS.primary} />
+            <View style={{ flex: 1 }}>
+                {/* <NFTCard background={NFTData} /> */}
+                <View style={{ zIndex: 0 }}>
+                    <FlatList
+                        data={NFTData}
+                        renderItem={({ item }) => <NFTCard data={item} />
+                        }
+                        keyExtractor={(item) => item.id}
+                        showsVerticalScrollIndicator={false}
+                        ListHeaderComponent={
+                            <HomeHeader />
+                        }
+                    />
+                </View>
+                <View style={{
+                    position: "absolute",
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    zIndex: -1
+                }}>
+                    <View
+                        style={{ height: 300, backgroundColor: COLORS.primary }}
+                    />
+                    <View
+                        style={{ flex: 1, backgroundColor: COLORS.white }}
+                    />
+                </View>
+            </View>
+        </SafeAreaView>
     )
 }
 
