@@ -1,18 +1,37 @@
 import { Image, Text, View } from 'react-native'
-import { assets, SIZES } from '../constants'
+import { assets, COLORS, FONTS, SHADOWS, SIZES } from '../constants'
 
-export const NFTTile = () => {
+export const NFTTile = ({ title, subTitle, titleSize, subTitleSize }) => {
     return (
         <View>
-            <Text>NFTTile</Text>
+            <Text style={{ fontFamily: FONTS.semiBold, fontSize: titleSize, color: COLORS.primary }}>{title}</Text>
+            <Text style={{ fontFamily: FONTS.regular, fontSize: subTitleSize, color: COLORS.primary }}>{subTitle}</Text>
         </View>
     )
 }
 
-export const EthPrice = () => {
+export const EthPrice = ({ price }) => {
     return (
-        <View>
-            <Text>EthPrice</Text>
+        <View style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+        }}>
+            <Image
+                source={assets.eth}
+                resizeMode="contain"
+                style={{
+                    width: 20, height: 20, marginRight: 2
+                }}
+            />
+            <Text
+                style={{
+                    fontFamily: FONTS.medium,
+                    fontSize: SIZES.font,
+                    color: COLORS.primary
+                }}
+            >
+                {price}
+            </Text>
         </View>
     )
 }
@@ -42,8 +61,34 @@ export const People = () => {
 
 export const EndDate = () => {
     return (
-        <View>
-            <Text>EndDate</Text>
+        <View
+            style={{
+                paddingHorizontal: SIZES.font,
+                paddingVertical: SIZES.base,
+                backgroundColor: COLORS.white,
+                justifyContent: 'center',
+                alignContent: 'center',
+                ...SHADOWS.light,
+                elevation: 1,
+                maxWidth: '50%',
+            }}
+        >
+            <Text
+                style={{
+                    fontFamily: FONTS.regular,
+                    fontSize: SIZES.small,
+                    color: COLORS.primary
+                }}>
+                Ending in
+            </Text>
+            <Text
+                style={{
+                    fontFamily: FONTS.semiBold,
+                    fontSize: SIZES.medium,
+                    color: COLORS.primary
+                }}>
+                12h 42m
+            </Text>
         </View>
     )
 }
